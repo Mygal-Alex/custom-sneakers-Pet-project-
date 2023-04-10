@@ -1,0 +1,10 @@
+.carousel-spring-collection{
+    margin-top: 4vh;
+    z-index: 2;
+}
+.carousel-slide{
+    height: 60vh;
+}
+.indicator{
+    z-index:1;
+}

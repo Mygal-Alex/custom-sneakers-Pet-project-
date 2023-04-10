@@ -1,0 +1,20 @@
+.header__line{
+    background-color:#000000;
+}
+.header__baner-logo{
+    width: 40vh;
+    height: 5vh;
+}
+.nav-ico{
+    width: 2vh;
+    height: 2vh;
+    margin: 0 1vh 0 1vh;
+}
+.header__baner{
+    display: flex;
+    justify-content: space-between;
+}
+.ico-container{
+    display: flex;
+    align-items: center;
+}
