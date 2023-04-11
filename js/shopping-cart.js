@@ -8,6 +8,7 @@ shopping_active.addEventListener("click", (event) => opShopping(event));
 function opShopping(event) {
     body.classList.toggle("body_block")
     shopping_popup.classList.toggle("display_none")
+
     class ProductListCard {
         constructor() {
             this.container = document.querySelector(".shopping_popup__content-products");
@@ -33,7 +34,7 @@ function opShopping(event) {
             this.addEventListeners();
         }
         createProductDomString(product_) {
-            console.log(productsInCart[product_.id])
+            const prise = product_.price*productsInCart[product_.id]
             return `           
             <div class="shopping_popup__content-product prodact-id-content${product_.id}">
                 <img src="./img/carousel-spring-collection/${product_.image} " class="product-photo-card">
@@ -41,10 +42,15 @@ function opShopping(event) {
                     <p class="product-name-card">${product_.title}</p>
                 </div>
                 <div class="product-change-quantity">
+                <div class="quantity-container">
                     <div class="quantity prodact-id-quantity${product_.id}">${productsInCart[product_.id]}</div>
                     <a href="#" class="Increase-quantity quantity  prodact-id-${product_.id}"data-id=${product_.id}>+</a>
                     <a href="#" class="Decrease-quantity quantity  prodact-id-${product_.id}"data-id=${product_.id}>-</a>
                 </div>
+                <div class="prise-cortainer-${product_.id}">
+                    <div class="total-prise prise-id-${product_.id}">price:${prise}</div>
+                </div>
+            </div>
             </div>`;
         }
         addEventListeners() {
@@ -57,11 +63,18 @@ function opShopping(event) {
         }
         IncreaseQuantity(event) {
             const id = event.target.dataset.id
+            const reg = /^[a-zA-z\d]+[:]/
             const quantityShow = document.querySelector(`.prodact-id-quantity${id}`)
             const quantity = Number(quantityShow.textContent)
-            console.log(quantity)
             const heQuantity = quantity+1
             quantityShow.innerHTML = `<div class="quantity prodact-id-quantity${id}">${heQuantity}</div>`
+            const priseShow = document.querySelector(`.prise-id-${id}`)
+            const priceOut = document.querySelector(`.prise-cortainer-${id}`)
+            const prise =  Number(priseShow.textContent.replace(reg, ""))
+            const startPrice =  prise/quantity
+            console.log(prise)
+            const hePrise = prise+startPrice
+            priceOut.innerHTML = `<div class="total-prise prise-id-${id}">price:${hePrise}</div>`
                 function checCart(){
                     if(localStorage.getItem('cart')!= null){
                         productsInCart= JSON.parse(localStorage.getItem('cart'))
@@ -78,11 +91,19 @@ function opShopping(event) {
             }
         DecreaseQuantity(event){
             const id = event.target.dataset.id
+            const reg = /^[a-zA-z\d]+[:]/
             const quantityShow = document.querySelector(`.prodact-id-quantity${id}`)
             const quantity = Number(quantityShow.textContent)
             console.log(quantity)
             const heQuantity = quantity-1
             quantityShow.innerHTML = `<div class="quantity prodact-id-quantity${id}">${heQuantity}</div>`
+            const priseShow = document.querySelector(`.prise-id-${id}`)
+            const priceOut = document.querySelector(`.prise-cortainer-${id}`)
+            const prise =  Number(priseShow.textContent.replace(reg, ""))
+            const startPrice =  prise/quantity
+            console.log(prise)
+            const hePrise = prise-startPrice
+            priceOut.innerHTML = `<div class="total-prise prise-id-${id}">price:${hePrise}</div>`
                 function checCart(){
                     if(localStorage.getItem('cart')!= null){
                         productsInCart= JSON.parse(localStorage.getItem('cart'))
@@ -95,14 +116,15 @@ function opShopping(event) {
                 }
                 if(productsInCart[id]<1){
                     productsInCart = JSON.parse(localStorage.getItem('cart'))
+
                     delete productsInCart[id]
-                        console.log( productsInCart)
                         this.renderProducts();
                 }
                 localStorage.setItem("cart", JSON.stringify(productsInCart));
         }
         }
     new ProductListCard();
+
 }
 shopping_close.addEventListener("click", (event) => closeShopping(event));
 function closeShopping(event) {

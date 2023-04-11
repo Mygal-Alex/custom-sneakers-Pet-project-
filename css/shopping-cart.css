@@ -51,7 +51,7 @@
 
 .product-name-card {
     font-size: 30px;
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Sedgwick Ave Display', cursive;
     margin-bottom: 0;
 }
@@ -60,6 +60,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .quantity {
@@ -67,6 +68,19 @@
     color: black;
     text-decoration: none;
     margin: 0vh 0.5vh 0vh 0.5vh;
+}
+
+.quantity-container {
+    display: flex;
+    align-items: flex-start;
+    margin: 2vh 0vh 1vh 0vh;
+}
+
+.total-prise {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Sedgwick Ave Display', cursive;
+    margin-bottom: 0;
 }
 
 .product-info {
@@ -96,5 +110,6 @@
     height: 6vh;
     display: flex;
     justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
 }
