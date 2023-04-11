@@ -1,3 +1,4 @@
+let productsInCart = {};
 class ProductList {
     constructor() {
         this.container = document.querySelector(".products__gallery");
@@ -15,37 +16,47 @@ class ProductList {
     }
     createProductDomString(product) {
         return `           
-        <div class="product-container">
+        <div class="product-container card">
         <img class="product-photo" src="./img/carousel-spring-collection/${product.image}">
         <div class="product-description">
             <div class="product-text">
                 <p class="product-name">${product.title}</p>
             </div>
             <div class="product-button">
-            <button type="button" class="btn btn-secondary btn-buy" data-id=${product.id}> ${product.price} Buy</button>
+            <button class="btn btn-primary btn-buy" data-id=${product.id}> ${product.price} Buy</button>
             </div>
         </div>
     </div>`;
     }
     addEventListeners() {
-        document.querySelectorAll(".btn-buy").forEach((btn) => {
-            btn.addEventListener("click", this.addProductToCart.bind(this));
+        document.querySelectorAll('.btn-buy').forEach(btn => {
+            btn.addEventListener('click', this.addProductToCart.bind(this));
+            document.querySelector("#shopping-cart").addEventListener("click", this.checCarts(this))
         });
     }
-    async showProductInfo(event) {
-        const id = event.target.dataset.id;
-        const product = await this.productsService.getProductById(id);
-        const modal = document.querySelector("#product-info-modal");
-        modal.querySelector(".modal-title").innerHTML = product.title;
-        modal.querySelector(".product-image").src = `src="./img/carousel-spring-collection/${product.image}"`;
-        modal.querySelector(".product-price").innerHTML = product.price;
-        modal.querySelector(".btn-buy").dataset.id = product.id;
+    checCarts(event){
+        function checCart(){
+            if(localStorage.getItem('cart')!= null){
+                productsInCart= JSON.parse(localStorage.getItem('cart'))
+            }
+        }
+        checCart() 
     }
     addProductToCart(event) {
+        function checCart(){
+            if(localStorage.getItem('cart')!= null){
+                productsInCart= JSON.parse(localStorage.getItem('cart'))
+            }
+        }
+        checCart() 
         const id = event.target.dataset.id;
-        const cart = new Cart();
-        cart.addProduct(id);
-        window.showAlert("Added to cart!");
+        if(productsInCart[id]!== undefined){
+            productsInCart[id]+=1
+        }
+        else{
+            productsInCart[id]=1;   
+        }
+        localStorage.setItem("cart", JSON.stringify(productsInCart));
     }
 }
 new ProductList();

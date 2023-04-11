@@ -8,7 +8,7 @@ class ProductsService {
         if (!this.products) {
             this.products = await(await fetch('api/products.json')).json();
         }
-        return this.products;
+        return this.products
     }
 
     async getProductById(id) {
@@ -16,3 +16,4 @@ class ProductsService {
         return products.find(product => product.id === id);
     }
 }
+
