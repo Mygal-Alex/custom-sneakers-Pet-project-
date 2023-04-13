@@ -1,0 +1,54 @@
+.person-authorisation_popup {
+    overflow: hidden;
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+}
+
+.person-authorisation_popup__body {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 10px;
+}
+
+.person-authorisation_popup__body-content {
+    background-color: white;
+    color: black;
+    width: 50vh;
+    height: 60vh;
+    padding: 20px;
+    position: relative;
+}
+
+.person-authorisation_popup__content-title {
+    font-size: 30px;
+    margin: 0px 0px 0.5em 0px;
+}
+
+.person-authorisation_popup__content-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+}
+.person-authorisation-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.inp-authorisation{
+    margin-bottom: 0.5em;
+}
+#authorisation-submit{
+    width: 10vh;
+    height: 3vh;
+}

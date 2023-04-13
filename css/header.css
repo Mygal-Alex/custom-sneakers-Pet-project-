@@ -18,3 +18,8 @@
     display: flex;
     align-items: center;
 }
+.person{
+    display: flex;
+    color: white;
+    cursor: pointer;
+}
