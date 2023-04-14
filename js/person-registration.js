@@ -12,6 +12,7 @@ class Newuser {
         this.password = password
         this.name = name
         this.surname = surname
+        this.isAdmin = false
     }
 }
 function opPersonRegistration(event) {
@@ -93,7 +94,7 @@ for(let input of inputs){
     }
 }
 if(counter===8){
-    const result = new Newuser(email.value, nickname.value, phon.value, pass_1.value, name_user.value, surname_user.value)
+    const result = new Newuser(email.value, nickname.value, phon.value, pass_1.value, name_user.value, surname_user.value,)
     email.value="";
     nickname.value="";
     phon.value="";
@@ -102,6 +103,7 @@ if(counter===8){
     surname_user.value="";
     counter=0;
     closePersonRegistration()
+    console.log(result)
     return result
 }
 else{

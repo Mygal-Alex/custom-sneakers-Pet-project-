@@ -5,7 +5,8 @@ create TABLE persone(
     phone VARCHAR(255),
     password_ VARCHAR(255),
     name_ VARCHAR(255),
-    surname VARCHAR(255)
+    surname VARCHAR(255),
+    isAdmin BOOLEAN
 );
 
 create TABLE order_(
