@@ -41,3 +41,18 @@
     justify-content: flex-end;
     margin: 1vh 0vh 1vh 1vh;
 }
+.product-buttons{
+    display: flex;
+    justify-content: flex-end;
+}
+.product-ADMIN-button{
+    height: 4vh;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1vh 0vh 1vh 1vh;
+}
+.add-product-container{
+    display: flex;
+    justify-content: center;
+    margin: 1vh 1vh 1vh 1vh;
+}

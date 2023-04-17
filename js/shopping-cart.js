@@ -21,7 +21,6 @@ function opShopping(event) {
             for (let w in productsInCart) {
                 productsIndex.push(w);
             }
-            console.log(productsIndex)
             const products = []
             for (let index in productsIndex) {
                 const product = await this.productsService.getProductById(productsIndex[index]);
