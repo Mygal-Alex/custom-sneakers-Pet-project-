@@ -103,6 +103,25 @@
     <div class="container add-product-container">
         <button type="button" class="btn btn-primary btn-lg add-product-btn">add-product</button>
     </div>
+    <div id="add-product_popup" class="add-product_popup display_none">
+        <div class="add-product__body">
+            <div class="add-product__body-content">
+                <a href="#" class="add-product__content-close" id="add-product__content-close">X</a>
+                <div class="add-product__content-title">Додати новий товар</div>
+                <div class="add-product-form-conteiner">
+                    <form class="add-product-form">
+                        <input class="add-product-inp" id="new-product-title"  placeholder="title" type="text">
+                        <input class="add-product-inp" id="new-product-image" placeholder="image" type="text">
+                        <input class="add-product-inp" id="new-product-price" placeholder="price" type="text">
+                    </form>
+                </div>
+                <div class="add-product__content-btn">
+                    <button type="button" class="btn btn-secondary add-product_btn-submit" >Add product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="shopping_popup" class="shopping_popup display_none">
         <div class="shopping_popup__body">
             <div class="shopping_popup__body-content">
