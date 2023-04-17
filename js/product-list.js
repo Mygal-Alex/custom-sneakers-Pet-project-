@@ -109,14 +109,13 @@ class ProductList {
         const id = event.target.dataset.id;
         const manage_modal = document.getElementById(`manage-product-${id}`)
         manage_modal.classList.toggle("display_none")
-        const  manage_modalClose = document.getElementById(`manage-product__content-close-${id}`)
-        manage_modalClose.addEventListener("click", (event) => manage_modal.classList.toggle("display_none"));
+        body.classList.toggle("body_block")
     }
     ProductManageClose(event){
         const id = event.target.dataset.id;
-        const  manage_modalClose = document.getElementById(`manage-product__content-close-${id}`)
         const manage_modal = document.getElementById(`manage-product-${id}`)
-        manage_modalClose.addEventListener("click", (event) => manage_modal.classList.toggle("display_none"));
+        manage_modal.classList.toggle("display_none")
+        body.classList.toggle("body_block")
     }
     ProductManageSaveChanges(event){
         class Canges{
@@ -128,13 +127,12 @@ class ProductList {
             }
         }
         const id = event.target.dataset.id;
-
             const title = document.getElementById(`newtitle-${id}`).value
             const image = document.getElementById(`newimage-${id}`).value
             const price = document.getElementById(`newprice-${id}`).value
             const canges = new Canges(id,title,image,price)
             const manage_modal = document.getElementById(`manage-product-${id}`)
-            manage_modal.classList.toggle("display_none")
+            manage_modal.classList.toggle("display_none"),  body.classList.toggle("body_block")
             console.log(canges)
             return canges
             // location.reload()
