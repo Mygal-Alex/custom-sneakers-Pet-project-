@@ -17,7 +17,7 @@ class ProductList {
     createProductDomString(product) {
         return `           
         <div class="product-container card">
-        <img class="product-photo" src="./img/carousel-spring-collection/${product.image}">
+        <img class="product-photo" src="${product.image}">
         <div class="product-description">
             <div class="product-text">
                 <p class="product-name">${product.title}</p>
@@ -41,7 +41,7 @@ class ProductList {
                 <a href="#" class="manage-product__content-close" id="manage-product__content-close-${product.id}" data-id=${product.id}>X</a>
                 <div class="manage-product__content-title">product id:${product.id}</div>
                 <div class="manage-product__content-img">
-                <img class="manage-product-photo" src="./img/carousel-spring-collection/${product.image}">
+                <img class="manage-product-photo" src="${product.image}">
                 </div>
                 <div class="manage-product-form-conteiner">
                     <form class="manage-product-form">
