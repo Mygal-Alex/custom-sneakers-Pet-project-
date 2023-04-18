@@ -5,7 +5,7 @@ class ProductController {
         [title, productsimage, price])
         res.json(newProduct.rows[0])
     }
-    async getProduct(req, res) {
+    async getProducts(req, res) {
         const products = await db.query('SELECT * FROM product')
         res.json(products.rows)
     }

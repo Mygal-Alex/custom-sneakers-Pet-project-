@@ -1,20 +1,10 @@
+
 $(document).ready(() => { $("#registration-phon").mask("+38(999)999-99-99"); });
 const personRegistration_active = document.getElementById("person-registration");
 const personRegistration_popup = document.getElementById("person-registration_popup");
 const personRegistration_close = document.getElementById("person-registration_popup__content-close")
 
 personRegistration_active.addEventListener("click", (event) => opPersonRegistration(event));
-class Newuser {
-    constructor(email, nickname, phon, password, name, surname) {
-        this.email = email
-        this.nickname = nickname
-        this.phon = phon
-        this.password = password
-        this.name = name
-        this.surname = surname
-        this.isAdmin = false
-    }
-}
 function opPersonRegistration(event) {
     personCabinet_popup.classList.toggle("display_none")
     personRegistration_popup.classList.toggle("display_none")
@@ -55,7 +45,7 @@ phon.addEventListener('keyup', (event) => {
     };
 });
 pass_1.addEventListener('keyup', (event) => {
-    if (!validate(reg_pass,pass_1.value)) {
+    if (!validate(reg_pass, pass_1.value)) {
         notValid(pass_1);
     }
     else {
@@ -63,7 +53,7 @@ pass_1.addEventListener('keyup', (event) => {
     };
 });
 pass_2.addEventListener('keyup', (event) => {
-    if (!validate(reg_pass,pass_2.value)|| pass_2.value !== pass_1.value) {
+    if (!validate(reg_pass, pass_2.value) || pass_2.value !== pass_1.value) {
         notValid(pass_2);
     }
     else {
@@ -86,29 +76,44 @@ surname_user.addEventListener('keyup', (event) => {
         valid(surname_user);
     };
 });
-
+function regUser(email, nickname, phon, pass_1, name_user, surname_user) {
+    const response = fetch("http://localhost:8080/api/user", {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            "email": email,
+            "nickname": nickname,
+            "phone": phon,
+            "password_": pass_1,
+            "name_": name_user,
+            "surname": surname_user,
+            "isadmin": "false"
+        }),
+    });
+}
 submit.addEventListener('click', (event) => {
-for(let input of inputs){
-    if( input.classList.contains('is-valid') === true){
-        counter++
+    for (let input of inputs) {
+        if (input.classList.contains('is-valid') === true) {
+            counter++
+        }
     }
-}
-if(counter===8){
-    const result = new Newuser(email.value, nickname.value, phon.value, pass_1.value, name_user.value, surname_user.value,)
-    email.value="";
-    nickname.value="";
-    phon.value="";
-    pass_1.value="";
-    name_user.value="";
-    surname_user.value="";
-    counter=0;
-    closePersonRegistration()
-    console.log(result)
-    return result
-}
-else{
-    counter = 0;
-}
+    if (counter === 8) {
+        regUser(email.value, nickname.value, phon.value, pass_1.value, name_user.value, surname_user.value);
+        email.value = "";
+        nickname.value = "";
+        phon.value = "";
+        pass_1.value = "";
+        name_user.value = "";
+        surname_user.value = "";
+        counter = 0;
+        closePersonRegistration()
+    }
+    else {
+        counter = 0;
+    }
 });
 
 personRegistration_close.addEventListener("click", (event) => closePersonRegistration());
