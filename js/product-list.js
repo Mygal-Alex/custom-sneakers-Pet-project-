@@ -17,7 +17,7 @@ class ProductList {
     createProductDomString(product) {
         return `           
         <div class="product-container card">
-        <img class="product-photo" src="${product.image}">
+        <img class="product-photo" src="${product.productsimage}">
         <div class="product-description">
             <div class="product-text">
                 <p class="product-name">${product.title}</p>
@@ -45,13 +45,13 @@ class ProductList {
                 <a href="#" class="manage-product__content-close" id="manage-product__content-close-${product.id}" data-id=${product.id}>X</a>
                 <div class="manage-product__content-title">product id:${product.id}</div>
                 <div class="manage-product__content-img">
-                <img class="manage-product-photo" src="${product.image}">
+                <img class="manage-product-photo" src="${product.productsimage}">
                 </div>
                 <div class="manage-product-form-conteiner">
                     <form class="manage-product-form">
-                        <input class="manage-inp" id="newtitle-${product.id}" placeholder="title" type="text">
-                        <input class="manage-inp" id="newimage-${product.id}" placeholder="image" type="text">
-                        <input class="manage-inp" id="newprice-${product.id}" placeholder="price" type="text">
+                        <input class="manage-inp" id="newtitle-${product.id}" placeholder="title" value="${product.title}" type="text">
+                        <input class="manage-inp" id="newimage-${product.id}" placeholder="image" value="${product.productsimage}" type="text">
+                        <input class="manage-inp" id="newprice-${product.id}" placeholder="price" value="${product.price}" type="text">
                     </form>
                 </div>
                 <div class="manage-product__content-btn">
@@ -121,30 +121,37 @@ class ProductList {
         manage_modal.classList.toggle("display_none")
         body.classList.toggle("body_block")
     }
-    ProductManageSaveChanges(event){
-        class Canges{
-            constructor(){
-                this.id = id;
-                this.title = title;
-                this.image = image;
-                this.price = price;
-            }
-        }
+    async ProductManageSaveChanges(event){
+
         const id = event.target.dataset.id;
             const title = document.getElementById(`newtitle-${id}`).value
             const image = document.getElementById(`newimage-${id}`).value
             const price = document.getElementById(`newprice-${id}`).value
-            const canges = new Canges(id,title,image,price)
+            const response = await fetch(`http://localhost:8080/api/product/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+                "title": title,
+                "productsimage": image,
+                "price":price,
+                "id":id
+        }),
+    });
             const manage_modal = document.getElementById(`manage-product-${id}`)
             manage_modal.classList.toggle("display_none"),  body.classList.toggle("body_block")
-            console.log(canges)
-            return canges
-            // location.reload()
     }
-    ProductDelete(event){
+    async ProductDelete(event){
         const id = event.target.dataset.id;
-        console.log(`Delete item:${id}`)
-        // location.reload()
+        const response = await fetch(`http://localhost:8080/api/product/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
     }
 }
 new ProductList();

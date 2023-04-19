@@ -11,20 +11,25 @@ addProductClose.addEventListener("click", (event) => {
     addProductPopup.classList.toggle("display_none")
     body.classList.toggle("body_block")
 });
+async function sendProduct(title, image, price) {
+    const response = await fetch("http://localhost:8080/api/product", {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            "title": title,
+            "productsimage": image,
+            "price":price
+        }),
+    });
+}
 addProductSubmit.addEventListener("click", (event) => {
-        class Create_product{
-        constructor(title,image,price){
-            this.title = title;
-            this.image = image;
-            this.price = price;
-        }
-    }
     const titleCreate = document.querySelector("#new-product-title");
     const imageCreate = document.querySelector("#new-product-image");
     const priceCreate = document.querySelector("#new-product-price");
-    const newProdact = new Create_product(titleCreate.value,imageCreate.value,priceCreate.value)
+    sendProduct(titleCreate.value, imageCreate.value, priceCreate.value)
     addProductPopup.classList.toggle("display_none")
     body.classList.toggle("body_block")
-    console.log(newProdact)
-    return newProdact
 });

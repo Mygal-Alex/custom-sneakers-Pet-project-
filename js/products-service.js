@@ -3,17 +3,30 @@ class ProductsService {
         if (!ProductsService._instance) ProductsService._instance = this;
         return ProductsService._instance;
     }
-
+    
     async getProducts() {
-        if (!this.products) {
-            this.products = await(await fetch('api/products.json')).json();
-        }
+        const response = await fetch(`http://localhost:8080/api/product`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then((value)=>{this.products=value.json()})
         return this.products
     }
 
     async getProductById(id) {
-        const products = await this.getProducts();
-        return products.find(product => product.id === id);
+        const response = await fetch(`http://localhost:8080/api/product/${id}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then((value)=>{this.products=value.json()})
+        return this.products
     }
 }
+
 

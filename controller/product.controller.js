@@ -1,3 +1,4 @@
+const db = require('../db')
 class ProductController {
     async createProduct(req, res) {
         const { title, productsimage, price} = req.body
@@ -16,7 +17,7 @@ class ProductController {
     }
     async updateProduct(req, res) {
         const { title, productsimage, price, id } = req.body
-        const product = await db.query('UPDATE product set title = $1, productsimage = $2, price = $3, id = $4 RETURNING *',
+        const product = await db.query('UPDATE product set title = $1, productsimage = $2, price = $3 WHERE id = $4 RETURNING *',
         [title, productsimage, price, id])
         res.json(product.rows[0])
     }

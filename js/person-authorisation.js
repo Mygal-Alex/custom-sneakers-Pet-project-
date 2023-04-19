@@ -1,9 +1,8 @@
+
 const personAuthorisation_active = document.getElementById("person-authorisation");
 const personAuthorisation_popup = document.getElementById("person-authorisation_popup");
 const personAuthorisation_close = document.getElementById("person-authorisation_popup__content-close")
-
 personAuthorisation_active.addEventListener("click", (event) => opPersonAuthorisation(event));
-
 function opPersonAuthorisation(event) {
     personCabinet_popup.classList.toggle("display_none")
     personAuthorisation_popup.classList.toggle("display_none")
@@ -64,7 +63,7 @@ submitRegistered.addEventListener('click', (event) => {
             userData
                 .then((value) => {
                     const userDataPassword = value.password_
-                    const userDataNickname = value.nickname
+                    let userDataNickname = value.nickname
                     const userDataADMIN = value.isadmin
                     if (pass === userDataPassword) {
                         if (userDataADMIN === true) {
@@ -74,13 +73,15 @@ submitRegistered.addEventListener('click', (event) => {
                             const carouselBloc = document.querySelector(".carousel-spring-collection")
                             carouselBloc.classList.add("display_none")
                         }
+                        userAuthorized =  value.isadmin
+                        localStorage.setItem("user", JSON.stringify(userAuthorized));
                         nicknameRegistered.value = "";
                         passRegistered.value = "";
                         counterRegistered = 0;
                         const nick = document.querySelector(".person__nickname")
                         nick.innerHTML = `<div class="person__nickname">${userDataNickname}</div>`
                         const personCabinet = document.querySelector(".person-cabinet_popup__content-buttons")
-                        personCabinet.innerHTML = `<button class="btn btn-danger btn-delete">Вийти</button>`
+                        personCabinet.innerHTML = ` <button class="btn btn-danger btn-delete btn-ex">Вийти</button>`
                         closePersonAuthorisation()
                     }
                     else {
@@ -99,3 +100,4 @@ function closePersonAuthorisation() {
     body.classList.toggle("body_block")
     personAuthorisation_popup.classList.toggle("display_none")
 }
+

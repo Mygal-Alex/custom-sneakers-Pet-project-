@@ -36,7 +36,7 @@ function opShopping(event) {
             const prise = product_.price*productsInCart[product_.id]
             return `           
             <div class="shopping_popup__content-product prodact-id-content${product_.id}">
-                <img src="${product_.image} " class="product-photo-card">
+                <img src="${product_.productsimage} " class="product-photo-card">
                 <div class="product-info">
                     <p class="product-name-card">${product_.title}</p>
                 </div>
