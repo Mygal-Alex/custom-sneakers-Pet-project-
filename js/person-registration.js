@@ -76,8 +76,8 @@ surname_user.addEventListener('keyup', (event) => {
         valid(surname_user);
     };
 });
-function regUser(email, nickname, phon, pass_1, name_user, surname_user) {
-    const response = fetch("http://localhost:8080/api/user", {
+async function regUser(email, nickname, phon, pass_1, name_user, surname_user) {
+    const response = await fetch("http://localhost:8080/api/user", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

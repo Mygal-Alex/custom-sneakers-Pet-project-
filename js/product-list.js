@@ -26,11 +26,15 @@ class ProductList {
             <div class="product-button">
             <button class="btn btn-primary btn-buy" data-id=${product.id}> ${product.price} Buy</button>
             </div>
+            <div class="ADMIN-button display_none">
             <div class="product-ADMIN-button">
             <button class="btn btn-primary btn-manage" data-id=${product.id}>Manage</button>
             </div>
+            </div>
+            <div class="ADMIN-button display_none">
             <div class="product-ADMIN-button">
             <button class="btn btn-danger btn-delete" data-id=${product.id}>Delete</button>
+            </div>
             </div>
         </div>
         </div>

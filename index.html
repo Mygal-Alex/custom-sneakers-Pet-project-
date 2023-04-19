@@ -58,7 +58,7 @@
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" class="indicator"
                     aria-label="Slide 3"></button>
             </div>
-            <div class="carousel-inner">
+            <div class="carousel-inner ">
                 <div class="carousel-item active">
                     <img src="./img/carousel-spring-collection/slide-1.jpg" class="d-block w-100 carousel-slide"
                         alt="...">
@@ -100,9 +100,11 @@
         <div class="products__gallery container">
         </div>
     </section>
-    <div class="container add-product-container">
-        <button type="button" class="btn btn-primary btn-lg add-product-btn">add-product</button>
-    </div>
+    <section class="add-product-btn-ADMIN display_none">
+        <div class="container add-product-container ">
+            <button type="button" class="btn btn-primary btn-lg add-product-btn ">add-product</button>
+        </div>
+    </section>
     <div id="add-product_popup" class="add-product_popup display_none">
         <div class="add-product__body">
             <div class="add-product__body-content">
@@ -110,13 +112,13 @@
                 <div class="add-product__content-title">Додати новий товар</div>
                 <div class="add-product-form-conteiner">
                     <form class="add-product-form">
-                        <input class="add-product-inp" id="new-product-title"  placeholder="title" type="text">
+                        <input class="add-product-inp" id="new-product-title" placeholder="title" type="text">
                         <input class="add-product-inp" id="new-product-image" placeholder="image" type="text">
                         <input class="add-product-inp" id="new-product-price" placeholder="price" type="text">
                     </form>
                 </div>
                 <div class="add-product__content-btn">
-                    <button type="button" class="btn btn-secondary add-product_btn-submit" >Add product</button>
+                    <button type="button" class="btn btn-secondary add-product_btn-submit">Add product</button>
                 </div>
             </div>
         </div>
@@ -168,6 +170,7 @@
                         <input placeholder="Nickname" type="text " id="authorisation_nickname"
                             class="inp-authorisation">
                         <input placeholder="Пароль" type="password" id="authorisation_pass" class="inp-authorisation">
+                        <div class="inp-authorisation-message display_none">Логін або пароль неправильні</div>
                         <input type="button" value="Увійти" id="authorisation-submit"
                             class="btn btn-secondary inp-authorisation is-valid">
                     </form>
