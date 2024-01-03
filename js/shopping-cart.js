@@ -1,4 +1,3 @@
-
 const shopping_active = document.getElementById("shopping-cart");
 const shopping_popup = document.getElementById("shopping_popup");
 const body = document.body
@@ -130,4 +129,3 @@ function closeShopping(event) {
     body.classList.toggle("body_block")
     shopping_popup.classList.toggle("display_none")
 }
-module.exports =  { ProductListCard, ProductsService };
