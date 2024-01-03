@@ -9,6 +9,7 @@ class ProductController {
     async getProducts(req, res) {
         const products = await db.query('SELECT * FROM product')
         res.json(products.rows)
+        console.log(products)
     }
     async getOneProduct(req, res) {
         const id = req.params.id

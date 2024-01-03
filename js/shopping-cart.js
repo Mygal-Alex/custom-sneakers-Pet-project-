@@ -130,3 +130,4 @@ function closeShopping(event) {
     body.classList.toggle("body_block")
     shopping_popup.classList.toggle("display_none")
 }
+module.exports =  { ProductListCard, ProductsService };
